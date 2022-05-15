@@ -13,7 +13,6 @@ namespace MultithreadingOnBoats
         public int Count { get; private set; }
         public Types Type { get; }
         public Sizes Size { get; }
-        public int NumberInTunnel { get; set; }
 
         public Ship(Types type, Sizes size)
         {

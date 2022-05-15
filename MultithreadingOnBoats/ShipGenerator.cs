@@ -26,7 +26,6 @@ namespace MultithreadingOnBoats
             {
 
                 var ship = new Ship(CreateType(), CreateSize());
-                ship.NumberInTunnel = Tunnel.tunnel.Count;
                 if (Tunnel.AddShip(ship))
                 {
                     //Console.WriteLine(count);

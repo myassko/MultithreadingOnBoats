@@ -15,14 +15,14 @@ namespace MultithreadingImitation
 {
     public partial class Port : Form
     {
-        int  ShipCount = 50;
+        int ShipCount = 10;
         ShipGeneratorWinForm generator;
         TunnelWinForm tunnel;
         public Port()
         {
             InitializeComponent();
 
-           
+
 
 
 
@@ -30,40 +30,47 @@ namespace MultithreadingImitation
 
         private void start_Click(object sender, EventArgs e)
         {
-            Thread a=new Thread(Start);
+            Thread a = new Thread(Start);
+            a.Name = "Test";
             a.Start();
-          
+
 
 
         }
         public void Start()
         {
-         
-            
-            //for (int i = 0; i < ShipCount; i++)
-            //{
-            //    var ship = new ShipWinForm(ShipGenerator.CreateType(), ShipGenerator.CreateSize());
+            try
+            {
+                for (int i = 0; i < ShipCount; i++)
+                {
+                    var ship = new ShipWinForm(ShipGenerator.CreateType(), ShipGenerator.CreateSize());
+                    Thread th = Thread.CurrentThread;
+                    if (this.InvokeRequired)
+                    {
+                        Thread.Sleep(1000);
+                        this.BeginInvoke((MethodInvoker)delegate ()
+                        {
+                            generator.ShipTable.Controls.Add(ship.Button);
+                         
+                            //MessageBox.Show(th.Name);
+                        }
+                        );
+                    }
 
-            //    generator.ShipTable.Controls.Add(ship.Button);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            //}
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    MessageBox.Show(ShipCount.ToString());
-            //}
         }
 
         private void Port_Load(object sender, EventArgs e)
         {
             generator = new ShipGeneratorWinForm(ShipCount, this);
             tunnel = new TunnelWinForm(this);
-            for (int i = 0; i < ShipCount; i++)
-            {
-                var ship = new ShipWinForm(ShipGenerator.CreateType(), ShipGenerator.CreateSize());
 
-                generator.ShipTable.Controls.Add(ship.Button);
-
-            }
         }
     }
 }
