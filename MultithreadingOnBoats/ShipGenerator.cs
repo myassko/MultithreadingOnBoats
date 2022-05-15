@@ -7,16 +7,13 @@ using System.Threading.Tasks;
 
 namespace MultithreadingOnBoats
 {
-    internal class ShipGenerator
+    public class ShipGenerator
     {
         public object Block = new object();
         public Tunnel Tunnel { get; }
-
-        public List<Ship> AllShips { get; set; }
-
         public int ShipCount { get; private set; }
-
         private int countShip = 1;
+
         public ShipGenerator(Tunnel tunnel, int shipCount)
         {
             Tunnel = tunnel;
@@ -47,16 +44,13 @@ namespace MultithreadingOnBoats
 
         }
 
-    
-
-  
-        private Sizes CreateSize()
+        static public Sizes CreateSize()
         {
             var a = Enum.GetValues(typeof(Sizes));
             return (Sizes)a.GetValue(new Random().Next(a.Length));
         }
 
-        public static Types CreateType()
+        static public Types CreateType()
         {
             var a = Enum.GetValues(typeof(Types));
             return (Types)a.GetValue(new Random().Next(a.Length));
