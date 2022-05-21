@@ -9,10 +9,10 @@ namespace MultithreadingOnBoats
 {
     public class ShipGenerator
     {
-        public object Block = new object();
+        public object block = new object();
         public Tunnel Tunnel { get; }
         public int ShipCount { get; private set; }
-        private int countShip = 1;
+        private int shipWasCreated = 0;
 
         public ShipGenerator(Tunnel tunnel, int shipCount)
         {
@@ -22,14 +22,14 @@ namespace MultithreadingOnBoats
         }
         public void Start()
         {
-            while (countShip <= ShipCount)
+            while (shipWasCreated < ShipCount)
             {
 
                 var ship = new Ship(CreateType(), CreateSize());
                 if (Tunnel.AddShip(ship))
                 {
                     //Console.WriteLine(count);
-                    countShip++;
+                    shipWasCreated++;
                     try
                     {
                         Thread.Sleep(100);

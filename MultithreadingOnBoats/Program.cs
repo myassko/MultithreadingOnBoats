@@ -10,8 +10,10 @@ namespace MultithreadingOnBoats
 
         static public void Start()
         {
+            Console.WriteLine("Введите количество кораблей которое вы хотите сгенерировать");
+            int shipsCount = int.Parse(Console.ReadLine());
             var tunnel = new Tunnel();
-            ShipGenerator generator = new ShipGenerator(tunnel, 10);
+            ShipGenerator generator = new ShipGenerator(tunnel, shipsCount);
             PierLoader BananaPierLoader = new PierLoader(tunnel, Types.Banana);
             PierLoader BreadPierLoader = new PierLoader(tunnel, Types.Bread);
             PierLoader ClothesPierLoader = new PierLoader(tunnel, Types.Clothe);

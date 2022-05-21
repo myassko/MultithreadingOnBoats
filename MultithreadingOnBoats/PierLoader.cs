@@ -28,14 +28,14 @@ namespace MultithreadingOnBoats
             {
                 try
                 {
-                   
+                    Thread.Sleep(1000);
                     Ship ship = Tunnel.GetShip(ShipType);
                     var th = Thread.CurrentThread;
                     if (ship != null)
                     {
                         while (ship.CheckCount())
                         {
-                            //Thread.Sleep(1000);
+                            Thread.Sleep(100);
                             ship.Add(10);
                             Console.WriteLine($"Идет загрузка {ship.Count}-{th.Name}\n");
                         }
