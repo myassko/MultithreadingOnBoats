@@ -46,7 +46,7 @@ namespace MultithreadingOnBoats
 
 
             BananaThread.Join();
-            Console.WriteLine("Причал с бананами заверишл работу");
+            Console.WriteLine("Причал с бананами завершил работу");
 
             BreadThread.Join();
             Console.WriteLine("Причал с хлебом завершил  работу");
