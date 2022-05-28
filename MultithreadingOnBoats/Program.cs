@@ -53,6 +53,7 @@ namespace MultithreadingOnBoats
 
             ClothesThread.Join();
             Console.WriteLine("Причал с одеждой завершил работу");
+
         }
 
         static public void StopPierLoaders(List<Tuple<PierLoader, Thread>> pierLoadersList)
